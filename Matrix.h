@@ -169,7 +169,7 @@ template <typename T>
 void Gaus(Matrix<T> a, bool show = false) {
     int j = 0;
     std::vector<bool> bad(a.N());
-    std::cout << a << std::endl;
+    if (show) std::cout << a << std::endl;
     std::vector<std::pair<int, int>> main_ind;
     for (int i = 0; i < a.M(); i++) {
         bool ok = false;
@@ -179,8 +179,8 @@ void Gaus(Matrix<T> a, bool show = false) {
         for (int k = i; k < a.M(); k++) {
             if (a[k][j] != T(0)) {
                 std::swap(a[i], a[k]);
-                std::cout << "f2(" << i << ", " << k << ")=>\n";
-                std::cout << a << std::endl;
+                if (show) std::cout << "f2(" << i << ", " << k << ")=>\n";
+                if (show) std::cout << a << std::endl;
                 ok = true;
                 break;
             }
@@ -188,18 +188,18 @@ void Gaus(Matrix<T> a, bool show = false) {
         if (ok) {
             main_ind.push_back({i, j});
             T del = a[i][j];
-            std::cout << "f3(" << i << ", " << (1 / del) << ")=>\n";
+            if (show) std::cout << "f3(" << i << ", " << (1 / del) << ")=>\n";
             for (int z = j; z < a.N(); z++) {
                 a[i][z] /= del;
             }
-            std::cout << a << std::endl;
+            if (show) std::cout << a << std::endl;
             for (int k = i + 1; k < a.M(); k++) {
                 T x = a[k][j] / a[i][j];
-                std::cout << "f1(" << k << ", " << i << ", " << -x << ")=>\n";
+                if (show) std::cout << "f1(" << k << ", " << i << ", " << -x << ")=>\n";
                 for (int z = j; z < a.N(); z++) {
                     a[k][z] = a[k][z] - x * a[i][z];
                 }
-                std::cout << a << std::endl;
+                if (show) std::cout << a << std::endl;
             }
         }
         j++;
@@ -216,11 +216,11 @@ void Gaus(Matrix<T> a, bool show = false) {
         main_ind.pop_back();
         for (int k = i - 1; k >= 0; k--) {
             T x = a[k][j] / a[i][j];
-            std::cout << "f1(" << k << ", " << i << ", " << -x << ")=>\n";
+            if (show) std::cout << "f1(" << k << ", " << i << ", " << -x << ")=>\n";
             for (int z = j; z < a.N(); z++) {
                 a[k][z] = a[k][z] - x * a[i][z];
             }
-            std::cout << a << std::endl;
+            if (show) std::cout << a << std::endl;
         }
     }
     if (show) {
@@ -237,7 +237,7 @@ Matrix<T> QGaus(Matrix<T> a, bool show = false) {
     }
     int j = 0;
     std::vector<bool> bad(a.N());
-    std::cout << a << std::endl;
+    if (show) std::cout << a << std::endl;
     std::vector<std::pair<int, int>> main_ind;
     for (int i = 0; i < a.M(); i++) {
         bool ok = false;
@@ -247,8 +247,8 @@ Matrix<T> QGaus(Matrix<T> a, bool show = false) {
         for (int k = i; k < a.M(); k++) {
             if (a[k][j] != T(0)) {
                 std::swap(a[i], a[k]);
-                std::cout << "f2(" << i << ", " << k << ")=>\n";
-                std::cout << a << std::endl;
+                if (show) std::cout << "f2(" << i << ", " << k << ")=>\n";
+                if (show) std::cout << a << std::endl;
                 res = get_f2(a.N(), a.N(), i, k, a[i][j]) * res;
                 ok = true;
                 break;
@@ -257,20 +257,20 @@ Matrix<T> QGaus(Matrix<T> a, bool show = false) {
         if (ok) {
             main_ind.push_back({i, j});
             T del = a[i][j];
-            std::cout << "f3(" << i << ", " << (1 / del) << ")=>\n";
+            if (show) std::cout << "f3(" << i << ", " << (1 / del) << ")=>\n";
             res = get_f3(a.N(), a.N(), i, 1 / del) * res;
             for (int z = j; z < a.N(); z++) {
                 a[i][z] /= del;
             }
-            std::cout << a << std::endl;
+            if (show) std::cout << a << std::endl;
             for (int k = i + 1; k < a.M(); k++) {
                 T x = a[k][j] / a[i][j];
-                std::cout << "f1(" << k << ", " << i << ", " << -x << ")=>\n";
+                if (show) std::cout << "f1(" << k << ", " << i << ", " << -x << ")=>\n";
                 res = get_f1(a.N(), a.N(), k, i, -x) * res;
                 for (int z = j; z < a.N(); z++) {
                     a[k][z] = a[k][z] - x * a[i][z];
                 }
-                std::cout << a << std::endl;
+                if (show) std::cout << a << std::endl;
             }
         }
         j++;
@@ -287,12 +287,12 @@ Matrix<T> QGaus(Matrix<T> a, bool show = false) {
         main_ind.pop_back();
         for (int k = i - 1; k >= 0; k--) {
             T x = a[k][j] / a[i][j];
-            std::cout << "f1(" << k << ", " << i << ", " << -x << ")=>\n";
+            if (show) std::cout << "f1(" << k << ", " << i << ", " << -x << ")=>\n";
             res = get_f1(a.N(), a.N(), k, i, -x) * res;
             for (int z = j; z < a.N(); z++) {
                 a[k][z] = a[k][z] - x * a[i][z];
             }
-            std::cout << a << std::endl;
+            if (show) std::cout << a << std::endl;
         }
     }
     if (show) {
