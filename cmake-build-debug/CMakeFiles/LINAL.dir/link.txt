@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\LINAL.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\LINAL.dir/objects.a @CMakeFiles\LINAL.dir\objects1.rsp
+C:\MinGW\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\LINAL.dir/objects.a -Wl,--no-whole-archive  -o LINAL.exe -Wl,--out-implib,libLINAL.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\LINAL.dir\linklibs.rsp

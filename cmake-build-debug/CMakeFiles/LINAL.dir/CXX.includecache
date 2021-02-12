@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/nomap/CLionProjects/LINAL/Matrix.h
+Rational.h
+C:/Users/nomap/CLionProjects/LINAL/Rational.h
+iostream
+-
+vector
+-
+assert.h
+-
+algorithm
+-
+
+C:/Users/nomap/CLionProjects/LINAL/Rational.h
+numeric
+-
+iostream
+-
+
+C:/Users/nomap/CLionProjects/LINAL/main.cpp
+Matrix.h
+C:/Users/nomap/CLionProjects/LINAL/Matrix.h
+
